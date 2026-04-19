@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Pràctica georgià</title>
+</head>
+<body style="font-family: Arial; padding: 30px; max-width: 700px; margin: auto;">
+
+<h1>Pràctica de georgià</h1>
+
+<h2 id="text"></h2>
+
+<input id="input" placeholder="Escriu la pronunciació" style="width:100%; padding:10px; margin-bottom:10px;">
+
+<br>
+
+<button onclick="toggleSolution()">Mostra solució</button>
+
+<div id="solution" style="display:none; margin-top:20px;">
+  <p><b>Correcció:</b> <span id="correct"></span></p>
+  <p><b>Significat:</b> <span id="meaning"></span></p>
+</div>
+
+<br>
+
+<button onclick="prev()">Anterior</button>
+<button onclick="next()">Següent</button>
+
+<script>
+const exercises = [
+  {
+    georgian: "მე ვჭამ პურს",
+    solution: "me vcham purs",
+    catalan: "jo menjo pa"
+  },
+  {
+    georgian: "მე მინდა ღვინო",
+    solution: "me minda ghvino",
+    catalan: "vull vi"
+  },
+  {
+    georgian: "ჩვენ ვჭამთ ოჯახურს",
+    solution: "chven vchamt ojakhurs",
+    catalan: "mengem ojakhuri"
+  }
+];
+
+let index = 0;
+
+function load() {
+  document.getElementById("text").innerText = exercises[index].georgian;
+  document.getElementById("correct").innerText = exercises[index].solution;
+  document.getElementById("meaning").innerText = exercises[index].catalan;
+  document.getElementById("solution").style.display = "none";
+  document.getElementById("input").value = "";
+}
+
+function toggleSolution() {
+  const sol = document.getElementById("solution");
+  sol.style.display = sol.style.display === "none" ? "block" : "none";
+}
+
+function next() {
+  if (index < exercises.length - 1) {
+    index++;
+    load();
+  }
+}
+
+function prev() {
+  if (index > 0) {
+    index--;
+    load();
+  }
+}
+
+load();
+</script>
+
+</body>
+</html>
